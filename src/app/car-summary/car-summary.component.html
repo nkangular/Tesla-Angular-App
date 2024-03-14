@@ -1,0 +1,36 @@
+<div *ngIf="selectedModel">
+    <h2>{{stepperText3}}: {{summary}}</h2>
+    <h4>{{teslaText}} {{selectedModel.selectedModelDescription}}</h4>
+    <div class="config-details">
+        <div class="car-config-detail">
+            <p><strong>{{selectedModel.selectedConfigDescription}}</strong></p>
+            <p>{{selectedModel.selectedModelPrice | currency : 'USD'}}</p>
+        </div>
+        <div class="car-config-detail">
+            <p>{{range}}: {{selectedModel.selectedRange}} {{miles}} - {{maxSpeed}}: {{selectedModel.selectedSpeed}} </p>
+        </div>
+        <div class="car-config-detail">
+            <p><b>{{selectedModel.selectedColor}}</b></p>
+            <p>{{selectedModel.selectedColorPrice| currency : 'USD'}}</p>
+        </div>
+
+        <div class="car-config-detail" *ngIf="selectedModel.selectedTowHitch">
+            <p><b>{{towHitchPackage}}</b></p>
+            <p>{{selectedModel.selectedTowHitch | currency : 'USD'}}</p>
+        </div>
+
+        <div class="car-config-detail" *ngIf="selectedModel.selectedYoke">
+            <p><b>{{yokeSteeringWheel}}</b></p>
+            <p>{{selectedModel.selectedYoke | currency : 'USD'}}</p>
+        </div>
+
+        <div class="total-div">
+            <p><b>{{totalCostText}}</b></p>
+            <p>{{totalCost | currency:'USD':'symbol':'1.2-2'}}</p>
+        </div>
+
+    </div>
+
+    <div class="container" *ngIf="selectedCarImage">
+        <app-car-view [carImageUrl]="selectedCarImage"></app-car-view>
+    </div>

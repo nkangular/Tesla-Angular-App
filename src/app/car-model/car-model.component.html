@@ -1,0 +1,21 @@
+<h2>{{stepperText1}}: {{selectModelText}}</h2>
+<div class="row">
+    <label for="modelSelect">{{carModelText}}:</label>
+    <select id="modelSelect" (change)="onCarModelChange($event)">
+        <option value disabled selected>{{chooseDropDownText}}</option>
+        <option *ngFor="let model of carModels" [value]="model.description">{{ model.description
+            }}</option>
+    </select>
+
+    <div *ngIf="selectedModel">
+        <label for="colorSelect">{{carColorText}}:</label>
+        <select id="colorSelect" (change)="onCarColorChange($event)">
+            <option value disabled [selected]="!selectedColor"></option>
+            <option *ngFor="let color of carColors" [value]="color.description">{{ color.description
+                }}</option>
+        </select>
+    </div>
+</div>
+<div class="container" *ngIf="selectedCarImage">
+    <app-car-view [carImageUrl]="selectedCarImage"></app-car-view>
+</div>

@@ -1,0 +1,55 @@
+<h2>{{step2}}: {{slectConfigText}}</h2>
+<div class="form-group">
+    <label for="configSelect">{{config}}:</label>
+    <select id="configSelect" class="form-control" (change)="onCarConfigChange($event)">
+        <option disabled selected>{{chooseDropdown}}</option>
+        <option *ngFor="let config of configs" [ngValue]="config.description"
+            [selected]="config.description === selectedConfigOption">{{
+            config.description }}</option>
+    </select>
+</div>
+
+<div *ngIf="selectedConfig">
+    <div class="form-group">
+        <ng-container *ngIf="selectedConfig.range">
+            <label>{{range}}:</label>
+            <span>{{ selectedConfig.range }}</span>
+            <span> {{miles}}</span>
+            <span> - </span>
+        </ng-container>
+
+        <ng-container *ngIf="selectedConfig.speed">
+            <label>{{maxSpeed}}:</label>
+            <span>{{ selectedConfig.speed }}</span>
+            <span> - </span>
+        </ng-container>
+
+        <ng-container *ngIf="selectedConfig.price">
+            <label>{{cost}}:</label>
+            <span>{{ selectedConfig.price | currency:'USD' }}</span>
+        </ng-container>
+    </div>
+</div>
+
+
+    <div class="col-md-6">
+        <div *ngIf="includeTowHitchAvailable" class="form-group">
+            <div class="form-check">
+                <label class="form-check-label" for="includeTowHitch">{{towHitch}}?</label>
+                <input type="checkbox" class="form-check-input" (change)="setSelectedModel()" id="includeTowHitch"
+                    [(ngModel)]="includeTowHitch">
+            </div>
+        </div>
+
+        <div class="form-check"  *ngIf="includeYokeAvailable">
+            <label class="form-check-label" for="includeYokeAvailable">{{yokeSteeringWheel}}?</label>
+            <input type="checkbox" class="form-check-input" (change)="setSelectedModel()" id="includeYoke"
+                [(ngModel)]="includeYoke">
+        </div>
+
+
+    </div>
+
+<div class="container" *ngIf="imageSelected">
+    <app-car-view [carImageUrl]="imageSelected"></app-car-view>
+</div>

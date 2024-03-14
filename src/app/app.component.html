@@ -1,0 +1,10 @@
+<div class="main-page">
+  <div class="stepper-nav">
+    <button id="step1" [routerLink]="'/car-model'" routerLinkActive="active"> {{stepperText1}} </button>
+    <button id="step2" [routerLink]="'/car-config'" routerLinkActive="active" [disabled]="!step1Status">
+      {{stepperText2}} </button>
+    <button id="step3" [routerLink]="'/car-summary'" [disabled]="!step3Status"> {{stepperText3}}
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+</div>
